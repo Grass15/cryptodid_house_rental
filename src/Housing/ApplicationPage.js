@@ -69,7 +69,7 @@ function ApplicationPage(props) {
         ws.onopen = () => {
           console.log("WebSocket connection established");
          ws.send(JSON.stringify({
-          age: 22,
+          age: 21,
           balance: 100,
           creditScore: 700,
          }))
