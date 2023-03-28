@@ -73,12 +73,13 @@ function ApplicationPage(props) {
           balance: 100,
           creditScore: 700,
          }))
+         setrenderSpin(true);
+         setQrModal(true)
        };
      
 
        //here we receive either the claims are verified and also the userdata
        ws.onmessage = (event) => {
-         
          receivedData = JSON.parse(event.data)
          console.log(`Received from client message: ${event.data}`);
          setUserData(receivedData)
@@ -87,21 +88,18 @@ function ApplicationPage(props) {
          setVerifiedClaim(receivedData.verifiableCredentialStatus)
          setVerified(receivedData.verificationStatus)
         console.log(verifiedClaim)
+        setrenderSpin(false)
+        setQrModal(false)
+        ws.close()
        };
-       if(qrModal == true) ws.close()
-
-       setrenderSpin(false)
-       setQrModal(false)
       }
       
 
       const Verify = () => {
-        setQrModal(true)
-        
-        setrenderSpin(true);
-        setTimeout(() => {
-            Communicate()
-        }, 3500);
+        // setTimeout(() => {
+        //     Communicate()
+        // }, 3500);
+        Communicate()
       }
 
 
@@ -232,7 +230,7 @@ function ApplicationPage(props) {
                 padding : '8px'
 
               }}>
-                 <QRCode value={"192.168.11.103:8080"} />
+                 <QRCode value={"cryptodid.heroku.com:80"} />
             </div>
               </Modal>
             </>
