@@ -65,7 +65,7 @@ function ApplicationPage(props) {
         })
        
         console.log(claimdata)
-        const ws = new WebSocket("ws://cryptodid.herokuapp.com/verify");
+        const ws = new WebSocket("wss://cryptodid.herokuapp.com/verify");
         ws.onopen = () => {
           console.log("WebSocket connection established");
          ws.send(JSON.stringify({
