@@ -8,8 +8,10 @@
 
   To run the project, after cloning the project in the project directory, you can run:
   
-  ### `npm install`
-  ### `npm start`
+  ## `git clone https://github.com/Grass15/cryptodid_house_rental.git`
+  ## `cd cryptodid_house_rental`
+  ## `npm install`
+  ## `npm start`
   
   If you setup the verifier on your local machine do the following changes:
   
