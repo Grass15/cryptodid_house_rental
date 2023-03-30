@@ -66,6 +66,7 @@ function ApplicationPage(props) {
        
         console.log(claimdata)
         const ws = new WebSocket("wss://cryptodid.herokuapp.com/verify");
+        //const ws = new WebSocket("ws://192.168.1.14:8080/verify");
         ws.onopen = () => {
           console.log("WebSocket connection established");
          ws.send(JSON.stringify({
@@ -230,7 +231,7 @@ function ApplicationPage(props) {
                 padding : '8px'
 
               }}>
-                 <QRCode value={"cryptodid.heroku.com:80"} />
+                 <QRCode value={"cryptodid.herokuapp.com"} />
             </div>
               </Modal>
             </>
@@ -269,5 +270,4 @@ function ApplicationPage(props) {
         </div>
     );
 }
-
 export default ApplicationPage;
