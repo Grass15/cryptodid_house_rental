@@ -13,7 +13,7 @@
   ## `npm install`
   ## `npm start`
   
-  If you setup the verifier on your local machine do the following changes:
+  If you setup the verifier backend on your local machine do the following changes:
   
   Access to src\Housing\ApplicationPage.js
   
