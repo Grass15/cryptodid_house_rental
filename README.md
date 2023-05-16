@@ -1,70 +1,83 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Rental Merchant Website
 
-## Available Scripts
+## Description 
+This use case demonstrates the effectiveness of the MG FHE protocol in a scenario where a financial transaction is <br> required. In this example, a user wants to rent a house through an online web application. Using his digital wallet, <br> the user gets his personal information verified without the website having to interact with it directly.
 
-In the project directory, you can run:
+## Preview 
 
-### `npm start`
+The user is looking to rent a home on this web application.
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img src= homepage.png alt ="Home page" width = "800" height = "450">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+*After picking a house and fetching the necessary claims,*
 
-### `npm test`
+<img src= almostverified.png alt ="information required" width = "800" height = "450">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*the user can click on Fill and Verify to scan the QR code.*
 
-### `npm run build`
+<img src= verified.png alt ="Successfully approved" width = "800" height = "450">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Setup
+To execute the demonstration, you will need the following tools pre-installed:
+- [Node.js](https://nodejs.org/en/download) (intall npm with node.js) 
+- [cryptodid_verifier](https://github.com/Grass15/cryptodid_verifier.git) 
+- [cryptodid_android_app](https://github.com/Grass15/cryptodid_android_app)
+- [Git](https://git-scm.com/download)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Install & Run
 
-### `npm run eject`
+1. Open a new shell
+2. Copy the repository to your machine
+```terminal
+git clone https://github.com/Grass15/cryptodid_house_rental.git
+```
+3. Install packages 
+```terminal
+cd cryptodid_house_rental
+npm install
+```
+4. Start the web application 
+```terminal 
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<br>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+&nbsp; To execute the full demonstration, follow the next steps:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. Access to cryptodid_verifier\src\Housing\ApplicationPage.js 
+<br>
+  
+&nbsp;  Change the line:
+  
+      const ws = new WebSocket("wss://cryptodid.herokuapp.com/verify")
+&nbsp;  With: 
+  
+      const ws = new WebSocket("ws://yourverifierIp:yourVerifierPort/verify")
+&nbsp;  Example: 
+  
+      const ws = new WebSocket("ws://192.168.1.14:8080/verify")
+    
+&nbsp;   Change the line: 
+   
+      <QRCode value={"cryptodid.herokuapp.com"} />
+&nbsp;   With: 
+   
+      <QRCode value={"yourverifierIp:yourVerifierPort"} />
+&nbsp;   Example: 
+   
+      <QRCode value={"192.168.1.14:8080"} />
+  
+6. Execute the cryptodid_verifier <br>
+  
+7. Execute the cryptodid_android_app (make sure your android device is paired)
+  
+8. Fetch the necessary claims and click on "Verify a Claim" to scan the QR code
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
