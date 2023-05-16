@@ -65,33 +65,45 @@ function ApplicationPage(props) {
         })
        
         console.log(claimdata)
-        const ws = new WebSocket("wss://cryptodid.herokuapp.com/verify");
-        //const ws = new WebSocket("ws://192.168.1.14:8080/verify");
+        //const ws = new WebSocket("wss://cryptodid.herokuapp.com/verify");
+        const ws = new WebSocket("ws://192.168.11.100:8080/verify");
         ws.onopen = () => {
           console.log("WebSocket connection established");
          ws.send(JSON.stringify({
-          age: 20,
+          age: 18,
           balance: 100,
           creditScore: 700,
          }))
          setrenderSpin(true);
          setQrModal(true)
        };
+
+       const DEF_DELAY = 1000;
+
+        function sleep(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms || DEF_DELAY));
+        }
      
 
        //here we receive either the claims are verified and also the userdata
-       ws.onmessage = (event) => {
+       ws.onmessage = async (event) => {
          receivedData = JSON.parse(event.data)
          console.log(`Received from client message: ${event.data}`);
+         if(receivedData == "PING"){
+          await sleep(30000);
+          ws.send("PONG")
+         }else{
          setUserData(receivedData)
          //We set verified claims as an array where each index indicate the status of a claims
          console.log(receivedData["verifiableCredentialStatus"])
          setVerifiedClaim(receivedData.verifiableCredentialStatus)
          setVerified(receivedData.verificationStatus)
-        console.log(verifiedClaim)
-        setrenderSpin(false)
-        setQrModal(false)
-        ws.close()
+          console.log(verifiedClaim)
+          setrenderSpin(false)
+          setQrModal(false)
+          ws.close()
+         }
+         
        };
       }
       
