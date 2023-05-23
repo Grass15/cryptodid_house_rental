@@ -66,13 +66,13 @@ function ApplicationPage(props) {
        
         console.log(claimdata)
         //const ws = new WebSocket("wss://cryptodid.herokuapp.com/verify");
-        const ws = new WebSocket("ws://192.168.11.100:8080/verify");
+        const ws = new WebSocket("ws://192.168.11.106:8080/verify");
         ws.onopen = () => {
           console.log("WebSocket connection established");
          ws.send(JSON.stringify({
-          age: 18,
+          age: 17,
           balance: 100,
-          creditScore: 700,
+          creditScore: 200,
          }))
          setrenderSpin(true);
          setQrModal(true)
